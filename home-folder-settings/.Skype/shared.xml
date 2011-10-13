@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<config version="1.0" serial="49" timestamp="1287864608.10">
+  <Lib>
+    <BackboneInited>1</BackboneInited>
+    <Chat>
+      <FriendlyNameMaxSize>400</FriendlyNameMaxSize>
+    </Chat>
+    <Connection>
+      <DisablePort80>1</DisablePort80>
+    </Connection>
+  </Lib>
+  <UI>
+    <Installed>2</Installed>
+    <Language>en</Language>
+    <Pos>
+      <Height>710</Height>
+      <Width>306</Width>
+      <X>973</X>
+      <Y>53</Y>
+    </Pos>
+    <SavePassword>1</SavePassword>
+    <StartMinimized>1</StartMinimized>
+    <Style>Desktop Settings</Style>
+  </UI>
+</config>
