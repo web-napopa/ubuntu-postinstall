@@ -18,7 +18,7 @@ The scripts have two main goals:
 
 * **Themes** `themes.sh` - GTK themes and icons and fixes
 * **Extras** `extas.sh` - Few more applications 
-* **Fix for apache virtual hosts on NTFS drive ** `fix-ntfs-mount-usage-webserver.sh.editme` - It's a template. You **have to edit it** before running. I haven't got the time to make it interactive.
+* **Fix for apache virtual hosts on NTFS drive** `fix-ntfs-mount-usage-webserver.sh.editme` - It's a template. You **have to edit it** before running. I haven't got the time to make it interactive.
 
 ## Installation
 
