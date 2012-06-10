@@ -33,7 +33,7 @@ touch_dir ~/.config/gloobus
 copy_file ./home-folder-settings/.config/gloobus/gloobus-preview.cfg ~/.config/gloobus/gloobus-preview.cfg
 #### .psd EOG preview & thumbnails
 install_apt libglib2.0-dev libgdk-pixbuf2.0-dev
-git http://git.sukimashita.com/gdk-pixbuf-psd.git /tmp/pixbuf.git
+git clone http://git.sukimashita.com/gdk-pixbuf-psd.git /tmp/pixbuf.git
 cd /tmp/pixbuf.git
 bash ./autogen.sh
 make
@@ -45,11 +45,11 @@ copy_file ./home-folder-settings/.local/applications/mimeapps.list ~/.local/appl
 gconftool-2 --set /desktop/gnome/thumbnailers/image@vnd.adobe.photoshop/command -t string "evince-thumbnailer -s %s %u %o"
 gconftool-2 --set /desktop/gnome/thumbnailers/image@vnd.adobe.photoshop/enable -t boolean "True"
 #### REPLACE Nautilus with Nautilus Elementary
-add_ppa_repository "am-monkeyd/nautilus-elementary-ppa"
-
-update_apt
-upgrade_apt
-nautilus -q
+#add_ppa_repository "am-monkeyd/nautilus-elementary-ppa"
+#
+#update_apt
+#upgrade_apt
+#nautilus -q
 
 ############### Ubuntu tweak ##################
 add_ppa_repository "tualatrix/ppa"
@@ -63,12 +63,12 @@ install_apt buc ﻿super-boot-manager
 
 
 ############### Java ##################
-install_apt sun-java6-jre
+input_two_choice "Install SUN java?" "y" "n"
+if [ "$RET" == "y" ]
+then
+	install_apt sun-java6-jre
+fi
 
-############### Latest flash plugin ##################
-add_ppa_repository "sevenmachines/flash"
-update_apt
-install_apt flashplugin64-installer
 
 ############### Testing unstable soft in sandbox ##################
 add_ppa_repository "glimpse-hackers/stable"
@@ -97,6 +97,13 @@ input_two_choice "Remove OpenOffice?" "y" "n"
 if [ "$RET" == "y" ]
 then
 	remove_apt openoffice.org-common openoffice.org-l10n-common openoffice.org-thesaurus-en-au openoffice.org-thesaurus-en-us kdelibs5-data
+fi
+
+#libreoffice removal
+input_two_choice "Remove LibreOffice?" "y" "n"
+if [ "$RET" == "y" ]
+then
+	remove_apt libreoffice-core
 fi
 
 # cleans unnecessary software

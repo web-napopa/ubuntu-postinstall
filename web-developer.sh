@@ -15,4 +15,4 @@ install_apt opera
 source ./human.sh
 
 # Eclipse IDE installation is not included because of its older version in the repository
-info "* Don't forget to download Eclipse "
+info "* Don't forget to download Eclipse IDE or Jetbrains IDE"

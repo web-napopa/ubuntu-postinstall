@@ -8,7 +8,7 @@
 install_apt apt-file 
 
 #versioning
-install_apt git subversion bzr 
+install_apt git subversion bzr colordiff
 
 #archive
 install_apt unrar unzip
