@@ -8,7 +8,7 @@ source ./lib/basic.sh
 
 #install compiz control panel & synaptic
 #(first as you can spend your time setting options while install is done)
-install_apt compizconfig-settings-manager synaptic
+install_apt compizconfig-settings-manager compiz-plugins-extra synaptic
 
 ############### Ease of use ##################
 install_apt easystroke earcandy git-gui# synapse
