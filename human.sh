@@ -6,9 +6,14 @@
 source ./lib/utils/utils.sh
 source ./lib/basic.sh
 
-#install compiz control panel & synaptic
+############### Compiz control panel & Synaptic ##################
 #(first as you can spend your time setting options while install is done)
 install_apt compizconfig-settings-manager compiz-plugins-extra synaptic
+
+############## Dash #############
+add_ppa_repository "atareao/atareao"
+update_apt
+install_apt power-commands #shutdown, logoff, etc from dash
 
 ############### Ease of use ##################
 install_apt easystroke earcandy git-gui# synapse
@@ -17,10 +22,10 @@ cp -r ./home-folder-settings/.easystroke ~/
 touch_dir ~/.config/autostart
 copy_file ./home-folder-settings/.config/autostart/easystroke.desktop ~/.config/autostart/easystroke.desktop
 
-############### Editing files ##################
+##################### Editing files #####################
 install_apt gedit-plugins 
 
-############### Browsing files ##################
+##################### Browsing files ####################
 ####### Add browsing files related repos
 add_ppa_repository "gloobus-dev/gloobus-preview"
 add_ppa_repository "synapse-core/ppa"
@@ -32,14 +37,14 @@ install_apt gloobus-preview
 touch_dir ~/.config/gloobus
 copy_file ./home-folder-settings/.config/gloobus/gloobus-preview.cfg ~/.config/gloobus/gloobus-preview.cfg
 #### .psd EOG preview & thumbnails
-install_apt libglib2.0-dev libgdk-pixbuf2.0-dev
+install_apt  autoconf libtoolize libglib2.0-dev libgdk-pixbuf2.0-dev
 git clone http://git.sukimashita.com/gdk-pixbuf-psd.git /tmp/pixbuf.git
 cd /tmp/pixbuf.git
 bash ./autogen.sh
 make
 sudo make install
 cd $SCRIPTPATH
-rm /tmp/pixbuf.git
+rm -r /tmp/pixbuf.git
 touch_dir ~/.local/applications
 copy_file ./home-folder-settings/.local/applications/mimeapps.list ~/.local/applications/mimeapps.list
 gconftool-2 --set /desktop/gnome/thumbnailers/image@vnd.adobe.photoshop/command -t string "evince-thumbnailer -s %s %u %o"
@@ -56,10 +61,13 @@ add_ppa_repository "tualatrix/ppa"
 update_apt
 install_apt ubuntu-tweak
 
+############### Gnome config editor ##################
+install_apt dconf-tools
+
 ############### Bootloader config ##################
 add_ppa_repository "ingalex/super-boot-manager"
 update_apt
-install_apt buc ﻿super-boot-manager
+install_apt buc super-boot-manager
 
 
 ############### Java ##################
