@@ -16,7 +16,7 @@ update_apt
 install_apt power-commands #shutdown, logoff, etc from dash
 
 ############### Ease of use ##################
-install_apt easystroke earcandy git-gui# synapse
+install_apt easystroke earcandy git-gui #synapse
 ###### Easy stroke settings and automatic startup
 cp -r ./home-folder-settings/.easystroke ~/
 touch_dir ~/.config/autostart
@@ -28,27 +28,21 @@ install_apt gedit-plugins
 ##################### Browsing files ####################
 ####### Add browsing files related repos
 add_ppa_repository "gloobus-dev/gloobus-preview"
-add_ppa_repository "synapse-core/ppa"
+#add_ppa_repository "synapse-core/ppa"
 update_apt
 ####### Install browsing files related packages
-install_apt nautilus-open-terminal nautilus-gksu nautilus-ideviceinfo nautilus-filename-repairer nautilus-actions eog-plugins libswfdec-0.8-0 libgsf-bin imagemagick gnash gnome-raw-thumbnailer gnome-xfc-thumbnailer ooo-thumbnailer gnome-exe-thumbnailer deb-thumbnailer ffmpegthumbnailer gnome-xcf-thumbnailer
+install_apt nautilus-open-terminal nautilus-gksu nautilus-ideviceinfo nautilus-filename-repairer nautilus-actions eog-plugins libswfdec-0.8-0 libgsf-bin imagemagick gnash gnome-raw-thumbnailer gnome-xfc-thumbnailer ooo-thumbnailer gnome-exe-thumbnailer deb-thumbnailer ffmpegthumbnailer gnome-xcf-thumbnailer unoconv
 install_apt gloobus-preview
 #### gloobus-preview settings
 touch_dir ~/.config/gloobus
 copy_file ./home-folder-settings/.config/gloobus/gloobus-preview.cfg ~/.config/gloobus/gloobus-preview.cfg
 #### .psd EOG preview & thumbnails
-install_apt  autoconf libtoolize libglib2.0-dev libgdk-pixbuf2.0-dev
-git clone http://git.sukimashita.com/gdk-pixbuf-psd.git /tmp/pixbuf.git
-cd /tmp/pixbuf.git
-bash ./autogen.sh
-make
-sudo make install
-cd $SCRIPTPATH
-rm -r /tmp/pixbuf.git
-touch_dir ~/.local/applications
-copy_file ./home-folder-settings/.local/applications/mimeapps.list ~/.local/applications/mimeapps.list
-gconftool-2 --set /desktop/gnome/thumbnailers/image@vnd.adobe.photoshop/command -t string "evince-thumbnailer -s %s %u %o"
-gconftool-2 --set /desktop/gnome/thumbnailers/image@vnd.adobe.photoshop/enable -t boolean "True"
+add_ppa_repository "koinoba/ppa"
+update_apt
+install_apt libgdk-pixbuf2.0-psd
+
+echo "$(cat /usr/share/thumbnailers/evince.thumbnailer)image@vnd.adobe.photoshop;" > /usr/share/thumbnailers/evince.thumbnailer
+
 #### REPLACE Nautilus with Nautilus Elementary
 #add_ppa_repository "am-monkeyd/nautilus-elementary-ppa"
 #
@@ -62,7 +56,7 @@ update_apt
 install_apt ubuntu-tweak
 
 ############### Gnome config editor ##################
-install_apt dconf-tools
+#install_apt dconf-tools
 
 ############### Bootloader config ##################
 add_ppa_repository "ingalex/super-boot-manager"
@@ -78,13 +72,8 @@ then
 fi
 
 
-############### Testing unstable soft in sandbox ##################
-add_ppa_repository "glimpse-hackers/stable"
-update_apt
-install_apt glimpse glimpse-profile-elementary glimpse-profile-ubuntu
-
 ############### Enable changing keyboard shorcuts by hovering with the mouse over the file menu of the gnome-based application ##################
-gconftool --type bool --set /desktop/gnome/interface/can_change_accels true
+gsettings set org.gnome.desktop.interface can-change-accels true
 
 ############### Chrome browser ##################
 install_apt chromium-browser-l10n
